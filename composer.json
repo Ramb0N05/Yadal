@@ -1,6 +1,7 @@
 {
     "name": "heimans/yadal",
     "description": "Database Abstraction Layer",
+	"homepage": "https://github.com/ramon1611/Yadal",
     "type": "library",
 	
 	"authors": [
