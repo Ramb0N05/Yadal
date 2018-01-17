@@ -31,9 +31,9 @@ class Access extends Yadal
      * @access public
      * @author Teye Heimans
      */
-    function Access( $db )
+    function __construct( $db )
     {
-    	parent::Yadal( $db );
+    	parent::__construct( $db );
         $this->_nameQuote = array('[',']');
     }
     /**
@@ -51,30 +51,41 @@ class Access extends Yadal
      */
     function connect( $connStr = '', $username = '', $password = '' )
     {
-    	// make connection with the database
-        $this->_conn = new COM('ADODB.Connection');
-        if( !$this->_conn ) {
-            die(
-              'Error, could not create ADODB connection with COM. <br />'.
-              'This only works on windows systems!'
-            );
+        // make connection with the database
+        try {
+            $this->_conn = new COM('ADODB.Connection');
+            if( !$this->_conn ) {
+                trigger_error(
+                  'Error, could not create ADODB connection with COM. <br />'.
+                  'This only works on windows systems!', E_USER_ERROR
+                );
+            }
+            $this->_conn->Provider = 'Microsoft.Jet.OLEDB.4.0';
+            $this->_conn->LockType = 3;
+            // connect to the database
+            $connStr .=
+            'Data Source='.$this->_db.';'.
+            'User Id='.$username.';'.
+            'Password='.$password.';';
+            $this->_conn->Open( $connStr );
+            // no error occoured and connection is open ?
+            if( $this->_conn->Errors->Count == 0 && $this->_conn->State )
+            {
+                $this->_isConnected = true;
+                // return the connection resource
+                return $this->_conn;
+            }
+
+            return false;
+        } catch ( Exception $ex ) {
+            trigger_error(
+                  'Error, could not create ADODB connection with COM. <br />'.
+                  'This only works on windows systems! <br />'.
+                  'Error Message: '.$ex->getMessage(), E_USER_WARNING
+                );
+
+            return false;
         }
-        $this->_conn->Provider = 'Microsoft.Jet.OLEDB.4.0';
-        $this->_conn->LockType = 3;
-        // connect to the database
-        $connStr .=
-        'Data Source='.$this->_db.';'.
-        'User Id='.$username.';'.
-        'Password='.$password.';';
-        $this->_conn->Open( $connStr );
-        // no error occoured and connection is open ?
-        if( $this->_conn->Errors->Count == 0 && $this->_conn->State )
-        {
-            $this->_isConnected = true;
-            // return the connection resource
-            return $this->_conn;
-        }
-        return false;
     }
     /**
      * Access::close()
@@ -105,22 +116,27 @@ class Access extends Yadal
      */
     function query( $query )
     {
-    	// save the last query...
-    	$this->_lastQuery = $query;
-        $this->_cursor = 0;
-        // execute the query
-        $rs = $this->_conn->Execute( $query ) ;
-        if( !$rs )
-        {
+        try {
+            // save the last query...
+            $this->_lastQuery = $query;
+            $this->_cursor = 0;
+            // execute the query
+            $rs = $this->_conn->Execute( $query ) ;
+            if( !$rs )
+            {
+                return false;
+            }
+            else
+            {
+                // request numer of columns (otherwise delete wont work :-S )
+                if(!strtoupper(substr(trim($query), 0, 6)) == 'SELECT') {
+                    $rs->Fields->Count;
+                }
+                return $rs;
+            }
+        } catch ( Exception $ex ) {
+            trigger_error($ex->getMessage());
             return false;
-        }
-        else
-        {
-	        // request numer of columns (otherwise delete wont work :-S )
-	        if(!strtoupper(substr(trim($query), 0, 6)) == 'SELECT') {
-	            $rs->Fields->Count;
-	        }
-	        return $rs;
         }
     }
     /**

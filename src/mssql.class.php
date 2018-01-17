@@ -22,9 +22,9 @@ class MSSQL extends Yadal
      *
      * @author Teye Heimans
      */
-    function MSSQL( $db )
+    function __construct( $db )
     {
-        $this->Yadal( $db );
+        parent::__construct( $db );
         $this->_nameQuote = array('[',']');
     }
     /**
@@ -42,20 +42,11 @@ class MSSQL extends Yadal
      */
     function connect( $servername = '', $username = '', $password = '' )
     {
-    	// try to connect
-    	$this->_conn = mssql_connect( $servername, $username, $password );
-    	if( ! $this->_conn )
-    	{
-    		return false;
-    	}
-    	// select the database
-    	if( mssql_select_db( $this->_db, $this->_conn ) )
-    	{
-	    	$this->_isConnected = true;
-	    	// return the connection resource
-	        return $this->_conn;
-    	}
-    	return false;
+        // try to connect
+        $connectionInfo = array( 'Database' => $this->_db, 'UID' => $username, 'PWD' => $password  );
+    	$this->_conn = sqlsrv_connect( $servername, $connectionInfo );
+        
+        return $this->_conn;
     }
     /**
      * MSSQL::close()
@@ -71,7 +62,7 @@ class MSSQL extends Yadal
         if( $this->_isConnected )
         {
             $this->_isConnected = false;
-            return mssql_close( $this->_conn );
+            return sqlsrv_close( $this->_conn );
         }
     }
     /**
@@ -88,7 +79,7 @@ class MSSQL extends Yadal
     {
     	$this->_lastQuery = $query;
     	// execute the query
-        $sql =  mssql_query( $query );
+        $sql = sqlsrv_query( $this->_conn, $query );
         return $sql;
     }
     /**
@@ -103,9 +94,12 @@ class MSSQL extends Yadal
      * @access public
      * @author Teye Heimans
      */
-    function result( $result, $row = 0, $field = null )
+    function result( $sql, $row = 0, $field = null )
     {
-    	return mssql_result( $result, $row, $field);
+        $result = $this->getRecord( $sql, $row );
+        if ( isset( $result[$field] ) ) {
+            return $result[$field];
+        } else return false;
     }
     /**
      * MSSQL::getInsertId()
@@ -119,10 +113,10 @@ class MSSQL extends Yadal
      */
     function getInsertId( $table )
     {
-    	$sql = mssql_query( "SELECT IDENT_CURRENT('".$table."')" );
+    	$sql = sqlsrv_query( $this->_conn, "SELECT IDENT_CURRENT('".$table."')" );
     	if( $sql )
     	{
-    		list($id) = mssql_fetch_row($sql);
+    		list($id) = sqlsrv_fetch_array($sql, SQLSRV_FETCH_NUMERIC);
        		return $id;
     	}
     	else
@@ -148,11 +142,11 @@ class MSSQL extends Yadal
     function getError()
     {
     	$error = mssql_get_last_message();
-		if ($error == '')
+		if ($error == NULL)
 		{
 			$error = "General Error (The MS-SQL interface did not return a detailed error message).";
 		}
-        return $error;
+        return '[' . $error['code'] . '] ' . $error['message'];
     }
     /**
      * MSSQL::recordCount()
@@ -166,7 +160,7 @@ class MSSQL extends Yadal
      */
     function recordCount( $sql)
     {
-        return mssql_num_rows( $sql );
+        return sqlsrv_num_rows( $sql );
     }
     /**
      * MSSQL::getRecord()
@@ -177,9 +171,13 @@ class MSSQL extends Yadal
      * @access public
      * @author Teye Heimans
      */
-    function getRecord( $sql )
+    function getRecord( $sql, $row = NULL )
     {
-        return mssql_fetch_assoc( $sql );
+        if ( $row == NULL ) {
+            return sqlsrv_fetch_array( $sql, SQLSRV_FETCH_ASSOC );
+        } else {
+            return sqlsrv_fetch_array( $sql, SQLSRV_FETCH_ASSOC, $row );
+        }
     }
     /**
      * MSSQL::getFieldNames()
@@ -223,7 +221,7 @@ class MSSQL extends Yadal
 		{
 			$result[] = $row['fld'];
 		}
-		mssql_free_result($sql);
+		sqlsrv_free_stmt($sql);
 		// save the result in the cache
         $this->_cache['fields'][$t] = $result;
 		return $result;
@@ -329,7 +327,7 @@ class MSSQL extends Yadal
 		{
 			$result[] = $row['fld'];
 		}
-		mssql_free_result($sql);
+		sqlsrv_free_stmt($sql);
 		// save the result in the cache
     	$this->_cache['notnull'][$t] = $result;
 		return $result;
@@ -450,7 +448,7 @@ class MSSQL extends Yadal
 		{
 			$result[] = $row['fld'];
 		}
-		mssql_free_result($sql);
+		sqlsrv_free_stmt($sql);
 		// save the result in the cache
         $this->_cache['keys'][$t] = $result;
 		return $result;
@@ -505,7 +503,7 @@ class MSSQL extends Yadal
         {
             $result[$row['con']][] = $row['fld'];
         }
-        mssql_free_result($sql);
+        sqlsrv_free_stmt($sql);
         // save the result in the cache
         $this->_cache['unique'][$t] = $result;
         return $result;

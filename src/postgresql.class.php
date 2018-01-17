@@ -23,9 +23,9 @@ class PostgreSQL extends Yadal
      * @param string $db: The database to use to
      * @author Teye Heimans
      */
-    function PostgreSQL( $db )
+    function __construct( $db )
     {
-        $this->Yadal( $db );
+        parent::__construct( $db );
         $this->_nameQuote    = array('"', '"');
         $this->_quoteNumbers = true;
     }

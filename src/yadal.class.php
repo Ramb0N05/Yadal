@@ -27,24 +27,24 @@ function newYadal( $database = null, $type = null )
 	{
 	  // mysql
 	  case 'mysql':
-		include_once dirname(__FILE__).'/class.MySQL.php';
+		include_once dirname(__FILE__).'/mysql.class.php';
 		return new MySQL( $database );
 		break;
 	  // postgresql
 	  case 'postgresql':
 	  case 'postgres':
 	  case 'pgsql':
-	    include_once dirname(__FILE__).'/class.PostgreSQL.php';
+	    include_once dirname(__FILE__).'/postgresql.class.php';
 	    return new PostgreSQL( $database );
 	    break;
 	  // Microsoft SQL server (MSSQL)
 	  case 'mssql':
-	    include_once dirname(__FILE__).'/class.MSSQL.php';
+	    include_once dirname(__FILE__).'/mssql.class.php';
 	    return new MSSQL( $database );
 	    break;
 	  // Microsoft access database (Windows only)
 	  case 'access':
-	    include_once dirname(__FILE__).'/class.Access.php';
+	    include_once dirname(__FILE__).'/access.class.php';
 	    return new Access( $database );
 	    break;
 	  // ODBC
@@ -67,24 +67,24 @@ function newYadal( $database = null, $type = null )
  * class Yadal
  *
  * Yadal - Yet Another Database Abstraction Layer
- * Abstract database class
+ * Abstract Database class
  *
  * @author Teye Heimans
  * @package Yadal
  */
 class Yadal
 {
-	var $_conn;			// resource: contains the connection resource
+    var $_conn;			    // resource: contains the connection resource
     var $_db;           // string: contains the database name
     var $_table;        // string: contains the table name
     var $_keys;         // array: contains the primary keys
     var $_isConnected;  // boolean: do we have a connection ?
     var $_quoteNumbers; // boolean: do we have to quote numbers?
     var $_nameQuote;    // char/array: quote to use around table and field names (for possible spaces in the names)
-    var $_lastQuery;	// string: the last query executed
+    var $_lastQuery;	  // string: the last query executed
     var $_cache;        // array: cache of most actions.
     /**
-     * Yadal::Yadal()
+     * Yadal::__construct()
      *
      * Abstract constructor: store the db name.
      * Dont use this class to make a new Yadal object!!! Use the function
@@ -93,7 +93,7 @@ class Yadal
      * @param string $db: the database we are using
      * @author Teye Heimans
      */
-    function Yadal( $db = null )
+    function __construct( $db = null )
     {
         if( !is_null( $db ) )
         {

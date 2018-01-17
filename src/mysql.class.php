@@ -23,9 +23,9 @@ class MySQL extends Yadal
      * @param string $db: The database which should be used
      * @author Teye Heimans
      */
-    function MySQL( $db )
+    function __construct( $db )
     {
-        $this->Yadal( $db );
+        parent::__construct( $db );
         $this->_quoteNumbers = true;
         $this->_nameQuote = '`';
     }
