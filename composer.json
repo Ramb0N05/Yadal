@@ -1,0 +1,26 @@
+{
+    "name": "heimans/yadal",
+    "description": "Database Abstraction Layer",
+    "type": "library",
+	
+	"authors": [
+		{
+			"name": "Teye Heimans",
+			"email": "post@teyeheimans.nl",
+			"role": "Developer"
+		},
+		{
+			"name":	"Ramon Rosin (ramon1611)",
+			"email": "rosin.ramon@gmail.com",
+			"role": "Composer Package"
+		}
+	],
+	
+	"autoload": {
+		"files": [
+			"src/yadal.class.php"
+		]
+	},
+    
+	"require": {}
+}
