@@ -5,7 +5,7 @@
  * @package Yadal
  */
 /**
- * class MySQLi
+ * class YadalMySQLi
  *
  * Yadal - Yet Another Database Abstraction Layer
  * MySQL class
@@ -13,7 +13,7 @@
  * @author Teye Heimans
  * @package Yadal
  */
-class MySQLi extends Yadal
+class YadalMySQLi extends Yadal
 {
 	/**
      * MySQLi::__construct()
