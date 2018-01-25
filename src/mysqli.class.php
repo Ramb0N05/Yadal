@@ -50,7 +50,7 @@ class YadalMySQLi extends Yadal
 		if( $this->_conn )
 		{
 			// select the database
-			if(mysqli_select_db( $this->_conn, DB_NAME ))
+			if(mysqli_select_db( $this->_conn, $this->_db ))
 			{
 				$this->_isConnected = true;
 				// return the connection resource
