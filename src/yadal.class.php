@@ -29,7 +29,12 @@ function newYadal( $database = null, $type = null )
 	  case 'mysql':
 		include_once dirname(__FILE__).'/mysql.class.php';
 		return new MySQL( $database );
-		break;
+    break;
+    // mysqli
+    case 'mysqli':
+    include_once dirname(__FILE__).'mysqli.class.php';
+    return new MySQLi( $database );
+    break;
 	  // postgresql
 	  case 'postgresql':
 	  case 'postgres':
