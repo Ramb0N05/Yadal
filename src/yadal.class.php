@@ -32,7 +32,7 @@ function newYadal( $database = null, $type = null )
     break;
     // mysqli
     case 'mysqli':
-    include_once dirname(__FILE__).'mysqli.class.php';
+    include_once dirname(__FILE__).'/mysqli.class.php';
     return new MySQLi( $database );
     break;
 	  // postgresql
@@ -77,7 +77,7 @@ function newYadal( $database = null, $type = null )
  * @author Teye Heimans
  * @package Yadal
  */
-class Yadal
+abstract class Yadal
 {
     var $_conn;			    // resource: contains the connection resource
     var $_db;           // string: contains the database name
@@ -313,110 +313,21 @@ class Yadal
     	}
     	return false;
     }
-    function getTables( )
-    {
-    	trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function getFieldTypes( )
-    {
-    	trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function connect( )
-    {
-    	trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function getNotNullFields()
-    {
-	    trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function getUniqueFields()
-    {
-        trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function getPrKeys()
-    {
-        trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function recordCount()
-    {
-        trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function getFieldNames()
-    {
-        trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function escapeString()
-    {
-        trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function getRecord()
-    {
-        trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function getInsertId()
-    {
-        trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function query()
-    {
-        trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function close()
-    {
-        trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function getError()
-    {
-        trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
-    function GetErrorNo()
-    {
-        trigger_error(
-          'Error, abstract function '.__FUNCTION__.' has not been overwritten by class '.get_class( $this ),
-          E_USER_WARNING
-        );
-    }
+
+    abstract function getTables( );
+    abstract function getFieldTypes( );
+    abstract function connect( );
+    abstract function getNotNullFields();
+    abstract function getUniqueFields();
+    abstract function getPrKeys();
+    abstract function recordCount();
+    abstract function getFieldNames();
+    abstract function escapeString();
+    abstract function getRecord();
+    abstract function getInsertId();
+    abstract function query();
+    abstract function close();
+    abstract function getError();
+    abstract function GetErrorNo();
 }
 ?>
