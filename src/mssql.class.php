@@ -36,14 +36,20 @@ class MSSQL extends Yadal
      * @param string $servername: the server to connect to
      * @param string $username: the username which should be used to login
      * @param string $password: the password which should be used to login
+	 * @param string $charset: the charset for the connection
      * @return resource: The connection resource or false on failure
      * @access public
      * @author Teye Heimans
      */
-    function connect( $servername = '', $username = '', $password = '' )
+    function connect( $servername = '', $username = '', $password = '', $charset = 'UTF-8' )
     {
         // try to connect
-        $connectionInfo = array( 'Database' => $this->_db, 'UID' => $username, 'PWD' => $password  );
+        $connectionInfo = array(
+			'Database'		=> $this->_db,
+			'UID'			=> $username,
+			'PWD'			=> $password,
+			'CharacterSet'	=> $charset
+		);
     	$this->_conn = sqlsrv_connect( $servername, $connectionInfo );
         
         return $this->_conn;

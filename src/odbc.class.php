@@ -40,7 +40,7 @@ class ODBC extends Yadal {
      * Make a connection with the database and
      * select the database.
      *
-     * @param string dns: the dns to connect to
+     * @param string dsn: the dsn to connect to
      * @param string username: the username which should be used to login
      * @param string password: the password which should be used to login
      * @return resource: The connection resource or false on failure

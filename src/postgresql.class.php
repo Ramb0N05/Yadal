@@ -38,11 +38,13 @@ class PostgreSQL extends Yadal
      * @param string host: the host to connect to
      * @param string username: the username which should be used to login
      * @param string password: the password which should be used to login
+	 * @param string charset: the charset for the connection
+	 * @param string datestyle: the datestyle for the connection
      * @return resource: The connection resource or false on failure
      * @access public
      * @author Teye Heimans
      */
-    function connect( $host = '', $username = '', $password = '' )
+    function connect( $host = '', $username = '', $password = '', $charset = 'UTF8', $datestyle = 'ISO' )
     {
         // build connection string based on internal settings.
         $connStr = '';
@@ -57,8 +59,8 @@ class PostgreSQL extends Yadal
         if ( $connID )
         {
             $this->_conn = $connID;
-            $this->query("set datestyle='ISO'");
-            $this->query("set client_encoding = latin1;");
+            $this->query("set datestyle='" . $datestyle . "'");
+            $this->query("set client_encoding = " . $charset . ";");
             $this->_isConnected = true;
             // return the connection resource
             return $this->_conn;

@@ -45,11 +45,12 @@ class Access extends Yadal
      * @param string $connStr: Connection string data other then userid, password and datasource
      * @param string $username: the username which should be used to login
      * @param string $password: the password which should be used to login
+	 * @param string $charset: the charset for the connection
      * @return resource: The connection resource or false on failure
      * @access public
      * @author Teye Heimans
      */
-    function connect( $connStr = '', $username = '', $password = '' )
+    function connect( $connStr = '', $username = '', $password = '', $charset = '65001' )
     {
         // make connection with the database
         try {
@@ -66,7 +67,8 @@ class Access extends Yadal
             $connStr .=
             'Data Source='.$this->_db.';'.
             'User Id='.$username.';'.
-            'Password='.$password.';';
+            'Password='.$password.';'.
+			'Extended Properties="CharacterSet='.$charset.';";';
             $this->_conn->Open( $connStr );
             // no error occoured and connection is open ?
             if( $this->_conn->Errors->Count == 0 && $this->_conn->State )

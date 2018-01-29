@@ -38,17 +38,19 @@ class MySQL extends Yadal
      * @param string host: the host to connect to
      * @param string username: the username which should be used to login
      * @param string password: the password which should be used to login
+	 * @param string charset: the charset for the connection
      * @return resource: The connection resource
      * @access public
      * @author Teye Heimans
      */
-    function connect( $host = 'localhost', $username = '', $password = '' )
+    function connect( $host = 'localhost', $username = '', $password = '', $charset = 'utf8' )
     {
     	// connect with the mysql database
     	$this->_conn = mysql_connect( $host, $username, $password );
     	// connection made?
     	if( $this->_conn )
     	{
+			mysql_set_charset( $charset, $this->_conn );
     		// select the database
     	    if(mysql_select_db( $this->_db, $this->_conn ))
     	    {

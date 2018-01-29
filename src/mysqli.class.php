@@ -38,17 +38,19 @@ class YadalMySQLi extends Yadal
      * @param string host: the host to connect to
      * @param string username: the username which should be used to login
      * @param string password: the password which should be used to login
+	 * @param string charset: the charset for the connection
      * @return resource: The connection resource
      * @access public
      * @author Teye Heimans
      */
-	function connect( $host = 'localhost', $username = '', $password = '' )
+	function connect( $host = 'localhost', $username = '', $password = '', $charset = 'utf8' )
 	{
 		// connect with the mysql database
 		$this->_conn = mysqli_connect( $host, $username, $password );
 		// connection made?
 		if( $this->_conn )
 		{
+			mysqli_set_charset( $this->_conn, $charset );
 			// select the database
 			if(mysqli_select_db( $this->_conn, $this->_db ))
 			{
