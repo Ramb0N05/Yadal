@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<phpdoc>
+	<title><![CDATA[Class Yadal - Documentation]]></title>
+
+	<parser>
+		<target>./doc</target>
+		<default-package-name>Yadal</default-package-name>
+	</parser>
+	
+	<transformer>
+		<target>./</target>
+	</transformer>
+	
+	<transformations>
+		<template name="C:\xampp\phpDoc\vendor\cvuorinen\phpdoc-markdown-public\data\templates\markdown-public" />
+	</transformations>
+	
+	<files>
+		<directory>./src</directory>
+	</files>
+</phpdoc>

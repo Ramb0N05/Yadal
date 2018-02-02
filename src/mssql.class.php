@@ -4,6 +4,7 @@
  *
  * @package Yadal
  */
+
 /**
  * class MSSQL
  *
@@ -177,12 +178,12 @@ class MSSQL extends Yadal
      * @access public
      * @author Teye Heimans
      */
-    function getRecord( $sql, $row = NULL )
+    function getRecord( $sql, $row = NULL, $mode = SQLSRV_FETCH_ASSOC )
     {
         if ( $row == NULL ) {
-            return sqlsrv_fetch_array( $sql, SQLSRV_FETCH_ASSOC );
+            return sqlsrv_fetch_array( $sql, $mode );
         } else {
-            return sqlsrv_fetch_array( $sql, SQLSRV_FETCH_ASSOC, $row );
+            return sqlsrv_fetch_array( $sql, $mode, $row );
         }
     }
     /**

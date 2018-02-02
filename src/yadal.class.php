@@ -6,12 +6,10 @@
  */
 define('YADAL_DEFAULT_DB_TYPE', 'mysql');
 /**
- * newYadal()
- *
  * Create a new database object of the correct type
  *
- * @param string $database: the database name to connect to
- * @param string $type: the type of database to use (default MySQL)
+ * @param string $database the database name to connect to. Default is NULL
+ * @param string $type the type of database to use (default MySQL)
  * @return object
  * @access public
  * @author Teye Heimans
@@ -68,6 +66,7 @@ function newYadal( $database = null, $type = null )
 	    return null;
 	}
 }
+
 /**
  * class Yadal
  *
