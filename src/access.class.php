@@ -22,11 +22,11 @@ class Access extends Yadal
 {
     var $_cursor;   // integer: what was the cursor position? (Used for recordCount)
     /**
-     * Access::Access()
+     * Access::__construct()
      *
      * Constructor
      *
-     * @param string $db: The database to connect to
+     * @param string $db The database to connect to
      * @return void
      * @access public
      * @author Teye Heimans
@@ -42,11 +42,11 @@ class Access extends Yadal
      * Make a connection with the database and
      * select the database.
      *
-     * @param string $connStr: Connection string data other then userid, password and datasource
-     * @param string $username: the username which should be used to login
-     * @param string $password: the password which should be used to login
-	 * @param string $charset: the charset for the connection
-     * @return resource: The connection resource or false on failure
+     * @param string $connStr Connection string data other then userid, password and datasource
+     * @param string $username the username which should be used to login
+     * @param string $password the password which should be used to login
+	 * @param string $charset the charset for the connection
+     * @return resource The connection resource or false on failure
      * @access public
      * @author Teye Heimans
      */
@@ -111,7 +111,7 @@ class Access extends Yadal
      *
      * Execute the query
      *
-     * @param string $query: the query to execute
+     * @param string $query the query to execute
      * @return record set
      * @access public
      * @author Teye Heimans
@@ -147,7 +147,7 @@ class Access extends Yadal
      * Get the id of the last inserted record. Because MS Access
      * can't fetch the last inserted id we just fetch the highest id
      *
-     * @param string $table: the table to fetch the last key from
+     * @param string $table the table to fetch the last key from
      * @return int
      * @access public
      * @author Teye Heimans
@@ -192,7 +192,7 @@ class Access extends Yadal
      *
      * Public: return the number of records found by the query
      *
-     * @param recordset $rs: The recordset where the records should be counted from
+     * @param recordset $rs The recordset where the records should be counted from
      * @return int
      * @access public
      * @author Teye Heimans
@@ -238,7 +238,7 @@ class Access extends Yadal
      *
      * Public: fetch a record in assoc mode and return it
      *
-     * @param recordset $rs: $the recordset where we should get a record from
+     * @param recordset $rs $the recordset where we should get a record from
      * @return array
      * @access public
      * @author Teye Heimans
@@ -289,7 +289,7 @@ class Access extends Yadal
 	 *
 	 * retrieve the field names used in the table
 	 *
-	 * @param string $table: table to retrieve the field names from
+	 * @param string $table table to retrieve the field names from
 	 * @return array of field names
 	 * @access public
      * @author Teye Heimans
@@ -331,7 +331,7 @@ class Access extends Yadal
      *
      * Retrieve the fields that can not contain NULL
      *
-     * @param string $table: The table which fields we should retrieve
+     * @param string $table The table which fields we should retrieve
      * @return array
      * @access public
      * @author Teye Heimans
@@ -377,8 +377,8 @@ class Access extends Yadal
      *
      * Get the primary keys from the table
      *
-     * @param  string $table: The table where we should fetch the primary keys from
-     * @return array: primary keys
+     * @param  string $table The table where we should fetch the primary keys from
+     * @return array primary keys
      * @access public
      * @author Teye Heimans
      */
@@ -423,9 +423,9 @@ class Access extends Yadal
      *
      * Convert the given date to the correct database format.
      *
-     * @param string $y: The year of the date which should be converteds
-     * @param string $m: The month of the date which should be converteds
-     * @param string $d: The day of the date which should be converteds
+     * @param string $y The year of the date which should be converteds
+     * @param string $m The month of the date which should be converteds
+     * @param string $d The day of the date which should be converteds
      * @return string the date in the correct format or null when the date could not be converted
      * @access public
      * @author Teye Heimans
@@ -453,7 +453,7 @@ class Access extends Yadal
      *
      * fetch the unique fields from the table
      *
-     * @param string $table: The table to fetch the unique fields from
+     * @param string $table The table to fetch the unique fields from
      * @return array
      * @access public
      * @author Teye Heimans
@@ -468,7 +468,7 @@ class Access extends Yadal
      *
      * Help function to display the schema's
      *
-     * @param int $schema: the schema to display. leave blank to display all schemas
+     * @param int $schema the schema to display. leave blank to display all schemas
      * @return void
      * @access private
      * @author Teye Heimans

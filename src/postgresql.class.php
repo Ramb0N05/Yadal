@@ -16,11 +16,11 @@
 class PostgreSQL extends Yadal
 {
     /**
-     * PostgreSQL::PostgreSQL()
+     * PostgreSQL::__construct()
      *
      * Constructor
      *
-     * @param string $db: The database to use to
+     * @param string $db The database to use to
      * @author Teye Heimans
      */
     function __construct( $db )
@@ -35,12 +35,12 @@ class PostgreSQL extends Yadal
      * Public: Make a connection with the database and
      * select the database.
      *
-     * @param string host: the host to connect to
-     * @param string username: the username which should be used to login
-     * @param string password: the password which should be used to login
-	 * @param string charset: the charset for the connection
-	 * @param string datestyle: the datestyle for the connection
-     * @return resource: The connection resource or false on failure
+     * @param string host the host to connect to
+     * @param string username the username which should be used to login
+     * @param string password the password which should be used to login
+	 * @param string charset the charset for the connection
+	 * @param string datestyle the datestyle for the connection
+     * @return resource The connection resource or false on failure
      * @access public
      * @author Teye Heimans
      */
@@ -93,7 +93,7 @@ class PostgreSQL extends Yadal
    	 *
    	 * Execute a query
    	 *
-   	 * @param string $query: The query which should be executed
+   	 * @param string $query The query which should be executed
    	 * @return resource
    	 * @access public
    	 * @author Teye Heimans
@@ -108,7 +108,7 @@ class PostgreSQL extends Yadal
      *
      * Get the id of the last inserted record
      *
-     * @param string $table: de tabel waarvan de laatste id van terug gegeven moet worden
+     * @param string $table de tabel waarvan de laatste id van terug gegeven moet worden
      * @return int
      * @access public
    	 * @author Teye Heimans
@@ -156,7 +156,7 @@ class PostgreSQL extends Yadal
      *
      * Return the last error
      *
-     * @param resource $sql: When you give a sql resource as parameter the last error of that result will be returned
+     * @param resource $sql When you give a sql resource as parameter the last error of that result will be returned
      * @return string
      * @access public
    	 * @author Teye Heimans
@@ -170,9 +170,9 @@ class PostgreSQL extends Yadal
      *
      * Return a specific result of a sql resource
      *
-     * @param resource $result: The sql result where you want to get a result from
-     * @param int $row: The row where you want a result from
-     * @param string $field: The field which result you want
+     * @param resource $result The sql result where you want to get a result from
+     * @param int $row The row where you want a result from
+     * @param string $field The field which result you want
      * @return string
      * @access public
      * @author Teye Heimans
@@ -199,7 +199,7 @@ class PostgreSQL extends Yadal
      *
      * Fetch a record in assoc mode and return it
      *
-     * @param resource $sql: The sql resource where we should get a record from
+     * @param resource $sql The sql resource where we should get a record from
      * @return assoc array or false when there are no records left
      * @access public
    	 * @author Teye Heimans
@@ -213,7 +213,7 @@ class PostgreSQL extends Yadal
      *
      * Return the field names of the table
      *
-     * @param string $table: The table to get the field names from
+     * @param string $table The table to get the field names from
      * @return array
      * @access public
    	 * @author Teye Heimans
@@ -313,7 +313,7 @@ class PostgreSQL extends Yadal
      *
      * Retrieve the fields that can not contain NULL
      *
-     * @param string $table: The table which fields we should retrieve
+     * @param string $table The table which fields we should retrieve
      * @return array
      * @access public
      * @author Teye Heimans
@@ -367,7 +367,7 @@ class PostgreSQL extends Yadal
      *
      * Retrieve the field types of the given table
      *
-     * @param string $table: The table where we should fetch the fields and their types from
+     * @param string $table The table where we should fetch the fields and their types from
      * @return array
      * @access public
      * @author Teye Heimans
@@ -465,7 +465,7 @@ class PostgreSQL extends Yadal
      *
      * Escape the string we are going to save from dangerous characters
      *
-     * @param string $string: The string which should be escaped
+     * @param string $string The string which should be escaped
      * @return string
      * @access public
    	 * @author Teye Heimans
@@ -479,7 +479,7 @@ class PostgreSQL extends Yadal
      *
      * Fetch the keys from the table
      *
-     * @param string $table: The table where we should retrieve the keys from
+     * @param string $table The table where we should retrieve the keys from
      * @return array
      * @access public
    	 * @author Teye Heimans
@@ -540,7 +540,7 @@ class PostgreSQL extends Yadal
      *
      * Fetch the unique keys from the table
      *
-     * @param string $table: The table where we should fetch the unique fields from
+     * @param string $table The table where we should fetch the unique fields from
      * @return array
      * @access public
    	 * @author Teye Heimans

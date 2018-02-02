@@ -16,11 +16,11 @@
 class MySQL extends Yadal
 {
     /**
-     * MySQL::MySQL()
+     * MySQL::__construct()
      *
      * Constructor: set the database we should be using
      *
-     * @param string $db: The database which should be used
+     * @param string $db The database which should be used
      * @author Teye Heimans
      */
     function __construct( $db )
@@ -35,11 +35,11 @@ class MySQL extends Yadal
      * Make a connection with the database and
      * select the database.
      *
-     * @param string host: the host to connect to
-     * @param string username: the username which should be used to login
-     * @param string password: the password which should be used to login
-	 * @param string charset: the charset for the connection
-     * @return resource: The connection resource
+     * @param string $host the host to connect to
+     * @param string $username the username which should be used to login
+     * @param string $password the password which should be used to login
+	 * @param string $charset the charset for the connection
+     * @return resource The connection resource
      * @access public
      * @author Teye Heimans
      */
@@ -84,7 +84,7 @@ class MySQL extends Yadal
      *
      * Execute the query
      *
-     * @param string $query: the query which should be executed
+     * @param string $query the query which should be executed
      * @return resource
      * @access public
      * @author Teye Heimans
@@ -112,9 +112,9 @@ class MySQL extends Yadal
      *
      * Return a specific result of a sql resource
      *
-     * @param resource $sql: The sql where you want to get a result from
-     * @param int $row: The row where you want a result from
-     * @param string $field: The field which result you want
+     * @param resource $sql The sql where you want to get a result from
+     * @param int $row The row where you want a result from
+     * @param string $field The field which result you want
      * @return string
      * @access public
      * @author Teye Heimans
@@ -154,7 +154,7 @@ class MySQL extends Yadal
      *
      * Return the number of records found by the query
      *
-     * @param resource $sql: The resource which should be counted
+     * @param resource $sql The resource which should be counted
      * @return int
      * @access public
      * @author Teye Heimans
@@ -168,7 +168,7 @@ class MySQL extends Yadal
      *
      * Fetch a record in assoc mode and return it
      *
-     * @param resource $sql: The resource which should be used to retireve a record from
+     * @param resource $sql The resource which should be used to retireve a record from
      * @return assoc array or false when there are no records left
      * @access public
      * @author Teye Heimans
@@ -182,7 +182,7 @@ class MySQL extends Yadal
      *
      * Return the field names of the table
      *
-     * @param string $table: The table where the field names should be collected from
+     * @param string $table The table where the field names should be collected from
      * @return array
      * @access public
      * @author Teye Heimans
@@ -280,7 +280,7 @@ class MySQL extends Yadal
      *
      * Retrieve the fields that can not contain NULL
      *
-     * @param string $table: The table which fields we should retrieve
+     * @param string $table The table which fields we should retrieve
      * @return array
      * @access public
      * @author Teye Heimans
@@ -324,7 +324,7 @@ class MySQL extends Yadal
      *
      * Retrieve the field types of the given table
      *
-     * @param string $table: The table where we should fetch the fields and their types from
+     * @param string $table The table where we should fetch the fields and their types from
      * @return array
      * @access public
      * @author Teye Heimans
@@ -379,7 +379,7 @@ class MySQL extends Yadal
      *
      * Escape the string we are going to save from dangerous characters
      *
-     * @param string $string: The string to escape
+     * @param string $string The string to escape
      * @return string
      * @access public
      * @author Teye Heimans
@@ -422,8 +422,8 @@ class MySQL extends Yadal
      *
      * Fetch the unique fields from the table
      *
-     * @param string $table: The table where the unique-value-field should be collected from
-     * @return array: multidimensional array of the unique indexes on the table
+     * @param string $table The table where the unique-value-field should be collected from
+     * @return array multidimensional array of the unique indexes on the table
      * @access public
      * @author Teye Heimans
      */

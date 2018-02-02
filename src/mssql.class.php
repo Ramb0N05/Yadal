@@ -17,10 +17,11 @@
 class MSSQL extends Yadal
 {
     /**
-     * MSSQL::MSSQL()
+     * MSSQL::__construct()
      *
      * Constructor
      *
+     * @param string $db The database which should be used
      * @author Teye Heimans
      */
     function __construct( $db )
@@ -34,11 +35,11 @@ class MSSQL extends Yadal
      * Make a connection with the database and
      * select the database.
      *
-     * @param string $servername: the server to connect to
-     * @param string $username: the username which should be used to login
-     * @param string $password: the password which should be used to login
-	 * @param string $charset: the charset for the connection
-     * @return resource: The connection resource or false on failure
+     * @param string $servername the server to connect to
+     * @param string $username the username which should be used to login
+     * @param string $password the password which should be used to login
+	 * @param string $charset the charset for the connection
+     * @return resource The connection resource or false on failure
      * @access public
      * @author Teye Heimans
      */
@@ -77,7 +78,7 @@ class MSSQL extends Yadal
      *
      * Execute the query
      *
-     * @param string $query: the query
+     * @param string $query the query
      * @return resource
      * @access public
      * @author Teye Heimans
@@ -94,9 +95,9 @@ class MSSQL extends Yadal
      *
      * Return a specific result of a sql resource
      *
-     * @param resource $result: The sql result where you want to get a result from
-     * @param int $row: The row where you want a result from
-     * @param string $field: The field which result you want
+     * @param resource $result The sql result where you want to get a result from
+     * @param int $row The row where you want a result from
+     * @param string $field The field which result you want
      * @return string
      * @access public
      * @author Teye Heimans
@@ -113,7 +114,7 @@ class MSSQL extends Yadal
      *
      * Get the id of the last inserted record
      *
-     * @param string $table: the table which last inserted id should be returned from
+     * @param string $table the table which last inserted id should be returned from
      * @return int
      * @access public
      * @author Teye Heimans
@@ -160,7 +161,7 @@ class MSSQL extends Yadal
      *
      * Return the number of records found by the query
      *
-     * @param resource $sql: the sql resource which we should count
+     * @param resource $sql the sql resource which we should count
      * @return int
      * @access public
      * @author Teye Heimans
@@ -191,7 +192,7 @@ class MSSQL extends Yadal
      *
      * Return the field names of the table
      *
-     * @param string $table: if a table is given, this one is used. otherwise the default is used
+     * @param string $table if a table is given, this one is used. otherwise the default is used
      * @return array
      * @access public
      * @author Teye Heimans
@@ -238,7 +239,7 @@ class MSSQL extends Yadal
      *
      * Return the tables from the database
      *
-     * @param bool $showViews: should we also return the views ? (default true )
+     * @param bool $showViews should we also return the views ? (default true )
      * @return array
      * @access public
      * @author Teye Heimans
@@ -294,7 +295,7 @@ class MSSQL extends Yadal
      *
      * Retrieve the fields that can not contain NULL
      *
-     * @param string $table: The table which fields we should retrieve
+     * @param string $table The table which fields we should retrieve
      * @return array
      * @access public
      * @author Teye Heimans
@@ -344,7 +345,7 @@ class MSSQL extends Yadal
      *
      * Retrieve the field types of the given table
      *
-     * @param string $table: The table where we should fetch the fields and their types from
+     * @param string $table The table where we should fetch the fields and their types from
      * @return array
      * @access public
      * @author Teye Heimans
@@ -413,7 +414,7 @@ class MSSQL extends Yadal
      *
      * Fetch the keys from the table
      *
-     * @param string $table: the table where we should fetch the keys from
+     * @param string $table the table where we should fetch the keys from
      * @return array of the keys which are found
      * @access public
      * @author Teye Heimans
@@ -465,7 +466,7 @@ class MSSQL extends Yadal
      *
      * Fetch the unique fields from the table
      *
-     * @param string $table: the table where we should fetch the unique fields from
+     * @param string $table the table where we should fetch the unique fields from
      * @return array of the keys which are found
      * @access public
      * @author Teye Heimans

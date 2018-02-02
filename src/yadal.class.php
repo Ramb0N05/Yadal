@@ -94,7 +94,7 @@ class Yadal
      * Dont use this class to make a new Yadal object!!! Use the function
      * newYadal() instead!!
      *
-     * @param string $db: the database we are using
+     * @param string $db the database we are using
      * @author Teye Heimans
      */
     function __construct( $db = null )
@@ -116,7 +116,7 @@ class Yadal
      * Instead of opening a new connection, set the
      * connection resource of the already opend connection
      *
-     * @param resource $conn: The connection resource
+     * @param resource $conn The connection resource
      * @return void
      * @access public
      * @author Teye Heimans
@@ -144,9 +144,9 @@ class Yadal
      *
      * Convert the given date to the correct database format.
      *
-     * @param string $y: The year of the date which should be converteds
-     * @param string $m: The month of the date which should be converteds
-     * @param string $d: The day of the date which should be converteds
+     * @param string $y The year of the date which should be converteds
+     * @param string $m The month of the date which should be converteds
+     * @param string $d The day of the date which should be converteds
      * @return string the date in the correct format or null when the date could not be converted
      * @access public
      * @author Teye Heimans
@@ -170,9 +170,9 @@ class Yadal
      *  ELSE 'Unknown'
      * END
      *
-     * @param string $field: The field which we should use in the case or if statement
-     * @param array $options: Array of options. The array key will be used as statement compare-item and the value will be used as value
-     * @param string $default: The default value if none of the array keys are matched. Default is "Unknown". If you dont want to have a default value, use false
+     * @param string $field The field which we should use in the case or if statement
+     * @param array $options Array of options. The array key will be used as statement compare-item and the value will be used as value
+     * @param string $default The default value if none of the array keys are matched. Default is "Unknown". If you dont want to have a default value, use false
      * @return string
      * @access public
      * @author Teye Heimans
@@ -223,7 +223,7 @@ class Yadal
      *
      * Return the table name or field name quoted (so that spaces can be used)
      *
-     * @param string $name: The table or field name which should me quoted
+     * @param string $name The table or field name which should me quoted
      * @return string
      * @access public
      * @author Teye Heimans
@@ -278,9 +278,9 @@ class Yadal
      *
      * Return a specific result of a sql resource
      *
-     * @param resource $sql: The sql where you want to get a result from
-     * @param int $row: The row where you want a result from
-     * @param string $field: The field which result you want
+     * @param resource $sql The sql where you want to get a result from
+     * @param int $row The row where you want a result from
+     * @param string $field The field which result you want
      * @return string
      * @access public
      * @author Teye Heimans

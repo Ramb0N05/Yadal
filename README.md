@@ -203,10 +203,10 @@ Abstract Database class
 
 ### __construct
 
-Access::Access()
+Access::__construct()
 
 ```php
-Access::__construct(  $db ): void
+Access::__construct( string $db ): void
 ```
 
 Constructor
@@ -216,7 +216,7 @@ Constructor
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$db` | **** |  |
+| `$db` | **string** | The database to connect to |
 
 
 
@@ -228,7 +228,7 @@ Constructor
 Yadal::setConnectionResource()
 
 ```php
-Access::setConnectionResource(  &$conn ): void
+Access::setConnectionResource( resource &$conn ): void
 ```
 
 Instead of opening a new connection, set the
@@ -239,7 +239,7 @@ connection resource of the already opend connection
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$conn` | **** |  |
+| `$conn` | **resource** | The connection resource |
 
 
 
@@ -267,7 +267,7 @@ Return if we have a connection or not
 Access::dbDate()
 
 ```php
-Access::dbDate(  $y,  $m,  $d ): string
+Access::dbDate( string $y, string $m, string $d ): string
 ```
 
 Convert the given date to the correct database format.
@@ -277,9 +277,9 @@ Convert the given date to the correct database format.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$y` | **** |  |
-| `$m` | **** |  |
-| `$d` | **** |  |
+| `$y` | **string** | The year of the date which should be converteds |
+| `$m` | **string** | The month of the date which should be converteds |
+| `$d` | **string** | The day of the date which should be converteds |
 
 
 **Return Value:**
@@ -295,7 +295,7 @@ the date in the correct format or null when the date could not be converted
 Yadal::array2case()
 
 ```php
-Access::array2case(  $field,  $options,  $default = &#039;Unknown&#039; ): string
+Access::array2case( string $field, array $options, string $default = &#039;Unknown&#039; ): string
 ```
 
 Change an array to a CASE statement which can be used in an query.
@@ -315,9 +315,9 @@ END
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$field` | **** |  |
-| `$options` | **** |  |
-| `$default` | **** |  |
+| `$field` | **string** | The field which we should use in the case or if statement |
+| `$options` | **array** | Array of options. The array key will be used as statement compare-item and the value will be used as value |
+| `$default` | **string** | The default value if none of the array keys are matched. Default is "Unknown". If you dont want to have a default value, use false |
 
 
 
@@ -345,7 +345,7 @@ Do we have to quote numbers ?
 Yadal::quote()
 
 ```php
-Access::quote(  $name ): string
+Access::quote( string $name ): string
 ```
 
 Return the table name or field name quoted (so that spaces can be used)
@@ -355,7 +355,7 @@ Return the table name or field name quoted (so that spaces can be used)
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$name` | **** |  |
+| `$name` | **string** | The table or field name which should me quoted |
 
 
 
@@ -399,7 +399,7 @@ Return the last query which was executed
 Yadal::result()
 
 ```php
-Access::result(  $sql,  $row,  $field = null ): string
+Access::result( resource $sql, integer $row, string $field = null ): string
 ```
 
 Return a specific result of a sql resource
@@ -409,9 +409,9 @@ Return a specific result of a sql resource
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
-| `$row` | **** |  |
-| `$field` | **** |  |
+| `$sql` | **resource** | The sql where you want to get a result from |
+| `$row` | **integer** | The row where you want a result from |
+| `$field` | **string** | The field which result you want |
 
 
 
@@ -461,7 +461,7 @@ Return the types of the fields retrieved from the given table
 Access::connect()
 
 ```php
-Access::connect(  $connStr = &#039;&#039;,  $username = &#039;&#039;,  $password = &#039;&#039;,  $charset = &#039;65001&#039; ): \resource:
+Access::connect( string $connStr = &#039;&#039;, string $username = &#039;&#039;, string $password = &#039;&#039;, string $charset = &#039;65001&#039; ): resource
 ```
 
 Make a connection with the database and
@@ -472,10 +472,10 @@ select the database.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$connStr` | **** |  |
-| `$username` | **** |  |
-| `$password` | **** |  |
-| `$charset` | **** |  |
+| `$connStr` | **string** | Connection string data other then userid, password and datasource |
+| `$username` | **string** | the username which should be used to login |
+| `$password` | **string** | the password which should be used to login |
+| `$charset` | **string** | the charset for the connection |
 
 
 **Return Value:**
@@ -491,7 +491,7 @@ The connection resource or false on failure
 Access::getNotNullFields()
 
 ```php
-Access::getNotNullFields(  $table ): array
+Access::getNotNullFields( string $table ): array
 ```
 
 Retrieve the fields that can not contain NULL
@@ -501,7 +501,7 @@ Retrieve the fields that can not contain NULL
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table which fields we should retrieve |
 
 
 
@@ -513,7 +513,7 @@ Retrieve the fields that can not contain NULL
 Access::getUniqueFields()
 
 ```php
-Access::getUniqueFields(  $table ): array
+Access::getUniqueFields( string $table ): array
 ```
 
 fetch the unique fields from the table
@@ -523,7 +523,7 @@ fetch the unique fields from the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table to fetch the unique fields from |
 
 
 
@@ -535,7 +535,7 @@ fetch the unique fields from the table
 Access::getPrKeys()
 
 ```php
-Access::getPrKeys(  $table ): \array:
+Access::getPrKeys( string $table ): array
 ```
 
 Get the primary keys from the table
@@ -545,7 +545,7 @@ Get the primary keys from the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table where we should fetch the primary keys from |
 
 
 **Return Value:**
@@ -561,7 +561,7 @@ primary keys
 Access::recordCount()
 
 ```php
-Access::recordCount(  $rs ): integer
+Access::recordCount( \recordset $rs ): integer
 ```
 
 Public: return the number of records found by the query
@@ -571,7 +571,7 @@ Public: return the number of records found by the query
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$rs` | **** |  |
+| `$rs` | **\recordset** | The recordset where the records should be counted from |
 
 
 
@@ -583,7 +583,7 @@ Public: return the number of records found by the query
 Access::getFieldNames()
 
 ```php
-Access::getFieldNames(  $table ): array
+Access::getFieldNames( string $table ): array
 ```
 
 retrieve the field names used in the table
@@ -593,7 +593,7 @@ retrieve the field names used in the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | table to retrieve the field names from |
 
 
 **Return Value:**
@@ -631,7 +631,7 @@ Escape the string we are going to save from dangerous characters
 Access::getRecord()
 
 ```php
-Access::getRecord(  $rs ): array
+Access::getRecord( \recordset $rs ): array
 ```
 
 Public: fetch a record in assoc mode and return it
@@ -641,7 +641,7 @@ Public: fetch a record in assoc mode and return it
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$rs` | **** |  |
+| `$rs` | **\recordset** | $the recordset where we should get a record from |
 
 
 
@@ -653,7 +653,7 @@ Public: fetch a record in assoc mode and return it
 Access::getInsertId()
 
 ```php
-Access::getInsertId(  $table ): integer
+Access::getInsertId( string $table ): integer
 ```
 
 Get the id of the last inserted record. Because MS Access
@@ -664,7 +664,7 @@ can't fetch the last inserted id we just fetch the highest id
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | the table to fetch the last key from |
 
 
 
@@ -676,7 +676,7 @@ can't fetch the last inserted id we just fetch the highest id
 Access::query()
 
 ```php
-Access::query(  $query ): \record
+Access::query( string $query ): \record
 ```
 
 Execute the query
@@ -686,7 +686,7 @@ Execute the query
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$query` | **** |  |
+| `$query` | **string** | the query to execute |
 
 
 **Return Value:**
@@ -758,10 +758,10 @@ Microsoft SQL Server (MSSQL) class
 
 ### __construct
 
-MSSQL::MSSQL()
+MSSQL::__construct()
 
 ```php
-MSSQL::__construct(  $db )
+MSSQL::__construct( string $db )
 ```
 
 Constructor
@@ -771,7 +771,7 @@ Constructor
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$db` | **** |  |
+| `$db` | **string** | The database which should be used |
 
 
 
@@ -783,7 +783,7 @@ Constructor
 Yadal::setConnectionResource()
 
 ```php
-MSSQL::setConnectionResource(  &$conn ): void
+MSSQL::setConnectionResource( resource &$conn ): void
 ```
 
 Instead of opening a new connection, set the
@@ -794,7 +794,7 @@ connection resource of the already opend connection
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$conn` | **** |  |
+| `$conn` | **resource** | The connection resource |
 
 
 
@@ -822,7 +822,7 @@ Return if we have a connection or not
 Yadal::dbDate()
 
 ```php
-MSSQL::dbDate(  $y,  $m,  $d ): string
+MSSQL::dbDate( string $y, string $m, string $d ): string
 ```
 
 Convert the given date to the correct database format.
@@ -832,9 +832,9 @@ Convert the given date to the correct database format.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$y` | **** |  |
-| `$m` | **** |  |
-| `$d` | **** |  |
+| `$y` | **string** | The year of the date which should be converteds |
+| `$m` | **string** | The month of the date which should be converteds |
+| `$d` | **string** | The day of the date which should be converteds |
 
 
 **Return Value:**
@@ -850,7 +850,7 @@ the date in the correct format or null when the date could not be converted
 Yadal::array2case()
 
 ```php
-MSSQL::array2case(  $field,  $options,  $default = &#039;Unknown&#039; ): string
+MSSQL::array2case( string $field, array $options, string $default = &#039;Unknown&#039; ): string
 ```
 
 Change an array to a CASE statement which can be used in an query.
@@ -870,9 +870,9 @@ END
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$field` | **** |  |
-| `$options` | **** |  |
-| `$default` | **** |  |
+| `$field` | **string** | The field which we should use in the case or if statement |
+| `$options` | **array** | Array of options. The array key will be used as statement compare-item and the value will be used as value |
+| `$default` | **string** | The default value if none of the array keys are matched. Default is "Unknown". If you dont want to have a default value, use false |
 
 
 
@@ -900,7 +900,7 @@ Do we have to quote numbers ?
 Yadal::quote()
 
 ```php
-MSSQL::quote(  $name ): string
+MSSQL::quote( string $name ): string
 ```
 
 Return the table name or field name quoted (so that spaces can be used)
@@ -910,7 +910,7 @@ Return the table name or field name quoted (so that spaces can be used)
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$name` | **** |  |
+| `$name` | **string** | The table or field name which should me quoted |
 
 
 
@@ -954,7 +954,7 @@ Return the last query which was executed
 MSSQL::result()
 
 ```php
-MSSQL::result(  $sql,  $row,  $field = null ): string
+MSSQL::result( resource $sql, integer $row, string $field = null ): string
 ```
 
 Return a specific result of a sql resource
@@ -964,9 +964,9 @@ Return a specific result of a sql resource
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
-| `$row` | **** |  |
-| `$field` | **** |  |
+| `$sql` | **resource** | The sql where you want to get a result from |
+| `$row` | **integer** | The row where you want a result from |
+| `$field` | **string** | The field which result you want |
 
 
 
@@ -978,7 +978,7 @@ Return a specific result of a sql resource
 MSSQL::getTables()
 
 ```php
-MSSQL::getTables(  $showViews = true ): array
+MSSQL::getTables( boolean $showViews = true ): array
 ```
 
 Return the tables from the database
@@ -988,7 +988,7 @@ Return the tables from the database
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$showViews` | **** |  |
+| `$showViews` | **boolean** | should we also return the views ? (default true ) |
 
 
 
@@ -1000,7 +1000,7 @@ Return the tables from the database
 MSSQL::getFieldTypes()
 
 ```php
-MSSQL::getFieldTypes(  $table ): array
+MSSQL::getFieldTypes( string $table ): array
 ```
 
 Retrieve the field types of the given table
@@ -1010,7 +1010,7 @@ Retrieve the field types of the given table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table where we should fetch the fields and their types from |
 
 
 
@@ -1022,7 +1022,7 @@ Retrieve the field types of the given table
 MSSQL::connect()
 
 ```php
-MSSQL::connect(  $servername = &#039;&#039;,  $username = &#039;&#039;,  $password = &#039;&#039;,  $charset = &#039;UTF-8&#039; ): \resource:
+MSSQL::connect( string $servername = &#039;&#039;, string $username = &#039;&#039;, string $password = &#039;&#039;, string $charset = &#039;UTF-8&#039; ): resource
 ```
 
 Make a connection with the database and
@@ -1033,10 +1033,10 @@ select the database.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$servername` | **** |  |
-| `$username` | **** |  |
-| `$password` | **** |  |
-| `$charset` | **** |  |
+| `$servername` | **string** | the server to connect to |
+| `$username` | **string** | the username which should be used to login |
+| `$password` | **string** | the password which should be used to login |
+| `$charset` | **string** | the charset for the connection |
 
 
 **Return Value:**
@@ -1052,7 +1052,7 @@ The connection resource or false on failure
 MSSQL::getNotNullFields()
 
 ```php
-MSSQL::getNotNullFields(  $table ): array
+MSSQL::getNotNullFields( string $table ): array
 ```
 
 Retrieve the fields that can not contain NULL
@@ -1062,7 +1062,7 @@ Retrieve the fields that can not contain NULL
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table which fields we should retrieve |
 
 
 
@@ -1074,7 +1074,7 @@ Retrieve the fields that can not contain NULL
 MSSQL::getUniqueFields()
 
 ```php
-MSSQL::getUniqueFields(  $table ): array
+MSSQL::getUniqueFields( string $table ): array
 ```
 
 Fetch the unique fields from the table
@@ -1084,7 +1084,7 @@ Fetch the unique fields from the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | the table where we should fetch the unique fields from |
 
 
 **Return Value:**
@@ -1100,7 +1100,7 @@ of the keys which are found
 MSSQL::getPrKeys()
 
 ```php
-MSSQL::getPrKeys(  $table ): array
+MSSQL::getPrKeys( string $table ): array
 ```
 
 Fetch the keys from the table
@@ -1110,7 +1110,7 @@ Fetch the keys from the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | the table where we should fetch the keys from |
 
 
 **Return Value:**
@@ -1126,7 +1126,7 @@ of the keys which are found
 MSSQL::recordCount()
 
 ```php
-MSSQL::recordCount(  $sql ): integer
+MSSQL::recordCount( resource $sql ): integer
 ```
 
 Return the number of records found by the query
@@ -1136,7 +1136,7 @@ Return the number of records found by the query
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
+| `$sql` | **resource** | the sql resource which we should count |
 
 
 
@@ -1148,7 +1148,7 @@ Return the number of records found by the query
 MSSQL::getFieldNames()
 
 ```php
-MSSQL::getFieldNames(  $table ): array
+MSSQL::getFieldNames( string $table ): array
 ```
 
 Return the field names of the table
@@ -1158,7 +1158,7 @@ Return the field names of the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | if a table is given, this one is used. otherwise the default is used |
 
 
 
@@ -1220,7 +1220,7 @@ array or false when there are no records left
 MSSQL::getInsertId()
 
 ```php
-MSSQL::getInsertId(  $table ): integer
+MSSQL::getInsertId( string $table ): integer
 ```
 
 Get the id of the last inserted record
@@ -1230,7 +1230,7 @@ Get the id of the last inserted record
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | the table which last inserted id should be returned from |
 
 
 
@@ -1242,7 +1242,7 @@ Get the id of the last inserted record
 MSSQL::query()
 
 ```php
-MSSQL::query(  $query ): resource
+MSSQL::query( string $query ): resource
 ```
 
 Execute the query
@@ -1252,7 +1252,7 @@ Execute the query
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$query` | **** |  |
+| `$query` | **string** | the query |
 
 
 
@@ -1320,10 +1320,10 @@ MySQL class
 
 ### __construct
 
-MySQL::MySQL()
+MySQL::__construct()
 
 ```php
-MySQL::__construct(  $db )
+MySQL::__construct( string $db )
 ```
 
 Constructor: set the database we should be using
@@ -1333,7 +1333,7 @@ Constructor: set the database we should be using
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$db` | **** |  |
+| `$db` | **string** | The database which should be used |
 
 
 
@@ -1345,7 +1345,7 @@ Constructor: set the database we should be using
 Yadal::setConnectionResource()
 
 ```php
-MySQL::setConnectionResource(  &$conn ): void
+MySQL::setConnectionResource( resource &$conn ): void
 ```
 
 Instead of opening a new connection, set the
@@ -1356,7 +1356,7 @@ connection resource of the already opend connection
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$conn` | **** |  |
+| `$conn` | **resource** | The connection resource |
 
 
 
@@ -1384,7 +1384,7 @@ Return if we have a connection or not
 Yadal::dbDate()
 
 ```php
-MySQL::dbDate(  $y,  $m,  $d ): string
+MySQL::dbDate( string $y, string $m, string $d ): string
 ```
 
 Convert the given date to the correct database format.
@@ -1394,9 +1394,9 @@ Convert the given date to the correct database format.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$y` | **** |  |
-| `$m` | **** |  |
-| `$d` | **** |  |
+| `$y` | **string** | The year of the date which should be converteds |
+| `$m` | **string** | The month of the date which should be converteds |
+| `$d` | **string** | The day of the date which should be converteds |
 
 
 **Return Value:**
@@ -1412,7 +1412,7 @@ the date in the correct format or null when the date could not be converted
 Yadal::array2case()
 
 ```php
-MySQL::array2case(  $field,  $options,  $default = &#039;Unknown&#039; ): string
+MySQL::array2case( string $field, array $options, string $default = &#039;Unknown&#039; ): string
 ```
 
 Change an array to a CASE statement which can be used in an query.
@@ -1432,9 +1432,9 @@ END
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$field` | **** |  |
-| `$options` | **** |  |
-| `$default` | **** |  |
+| `$field` | **string** | The field which we should use in the case or if statement |
+| `$options` | **array** | Array of options. The array key will be used as statement compare-item and the value will be used as value |
+| `$default` | **string** | The default value if none of the array keys are matched. Default is "Unknown". If you dont want to have a default value, use false |
 
 
 
@@ -1462,7 +1462,7 @@ Do we have to quote numbers ?
 Yadal::quote()
 
 ```php
-MySQL::quote(  $name ): string
+MySQL::quote( string $name ): string
 ```
 
 Return the table name or field name quoted (so that spaces can be used)
@@ -1472,7 +1472,7 @@ Return the table name or field name quoted (so that spaces can be used)
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$name` | **** |  |
+| `$name` | **string** | The table or field name which should me quoted |
 
 
 
@@ -1516,7 +1516,7 @@ Return the last query which was executed
 MySQL::result()
 
 ```php
-MySQL::result(  $sql,  $row,  $field = null ): string
+MySQL::result( resource $sql, integer $row, string $field = null ): string
 ```
 
 Return a specific result of a sql resource
@@ -1526,9 +1526,9 @@ Return a specific result of a sql resource
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
-| `$row` | **** |  |
-| `$field` | **** |  |
+| `$sql` | **resource** | The sql where you want to get a result from |
+| `$row` | **integer** | The row where you want a result from |
+| `$field` | **string** | The field which result you want |
 
 
 
@@ -1556,7 +1556,7 @@ Return the tables from the database
 MySQL::getFieldTypes()
 
 ```php
-MySQL::getFieldTypes(  $table ): array
+MySQL::getFieldTypes( string $table ): array
 ```
 
 Retrieve the field types of the given table
@@ -1566,7 +1566,7 @@ Retrieve the field types of the given table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table where we should fetch the fields and their types from |
 
 
 
@@ -1578,7 +1578,7 @@ Retrieve the field types of the given table
 MySQL::connect()
 
 ```php
-MySQL::connect(  $host = &#039;localhost&#039;,  $username = &#039;&#039;,  $password = &#039;&#039;,  $charset = &#039;utf8&#039; ): \resource:
+MySQL::connect( string $host = &#039;localhost&#039;, string $username = &#039;&#039;, string $password = &#039;&#039;, string $charset = &#039;utf8&#039; ): resource
 ```
 
 Make a connection with the database and
@@ -1589,10 +1589,10 @@ select the database.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$host` | **** |  |
-| `$username` | **** |  |
-| `$password` | **** |  |
-| `$charset` | **** |  |
+| `$host` | **string** | the host to connect to |
+| `$username` | **string** | the username which should be used to login |
+| `$password` | **string** | the password which should be used to login |
+| `$charset` | **string** | the charset for the connection |
 
 
 **Return Value:**
@@ -1608,7 +1608,7 @@ The connection resource
 MySQL::getNotNullFields()
 
 ```php
-MySQL::getNotNullFields(  $table ): array
+MySQL::getNotNullFields( string $table ): array
 ```
 
 Retrieve the fields that can not contain NULL
@@ -1618,7 +1618,7 @@ Retrieve the fields that can not contain NULL
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table which fields we should retrieve |
 
 
 
@@ -1630,7 +1630,7 @@ Retrieve the fields that can not contain NULL
 MySQL::getUniqueFields()
 
 ```php
-MySQL::getUniqueFields(  $table ): \array:
+MySQL::getUniqueFields( string $table ): array
 ```
 
 Fetch the unique fields from the table
@@ -1640,7 +1640,7 @@ Fetch the unique fields from the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table where the unique-value-field should be collected from |
 
 
 **Return Value:**
@@ -1682,7 +1682,7 @@ of the keys which are found
 MySQL::recordCount()
 
 ```php
-MySQL::recordCount(  $sql ): integer
+MySQL::recordCount( resource $sql ): integer
 ```
 
 Return the number of records found by the query
@@ -1692,7 +1692,7 @@ Return the number of records found by the query
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
+| `$sql` | **resource** | The resource which should be counted |
 
 
 
@@ -1704,7 +1704,7 @@ Return the number of records found by the query
 MySQL::getFieldNames()
 
 ```php
-MySQL::getFieldNames(  $table ): array
+MySQL::getFieldNames( string $table ): array
 ```
 
 Return the field names of the table
@@ -1714,7 +1714,7 @@ Return the field names of the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table where the field names should be collected from |
 
 
 
@@ -1726,7 +1726,7 @@ Return the field names of the table
 MySQL::escapeString()
 
 ```php
-MySQL::escapeString(  $string ): string
+MySQL::escapeString( string $string ): string
 ```
 
 Escape the string we are going to save from dangerous characters
@@ -1736,7 +1736,7 @@ Escape the string we are going to save from dangerous characters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$string` | **** |  |
+| `$string` | **string** | The string to escape |
 
 
 
@@ -1748,7 +1748,7 @@ Escape the string we are going to save from dangerous characters
 MySQL::getRecord()
 
 ```php
-MySQL::getRecord(  $sql ): \assoc
+MySQL::getRecord( resource $sql ): \assoc
 ```
 
 Fetch a record in assoc mode and return it
@@ -1758,7 +1758,7 @@ Fetch a record in assoc mode and return it
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
+| `$sql` | **resource** | The resource which should be used to retireve a record from |
 
 
 **Return Value:**
@@ -1790,7 +1790,7 @@ Get the id of the last inserted record
 MySQL::query()
 
 ```php
-MySQL::query(  $query ): resource
+MySQL::query( string $query ): resource
 ```
 
 Execute the query
@@ -1800,7 +1800,7 @@ Execute the query
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$query` | **** |  |
+| `$query` | **string** | the query which should be executed |
 
 
 
@@ -1884,10 +1884,10 @@ ODBC
 
 ### __construct
 
-ODBC::ODBC()
+ODBC::__construct()
 
 ```php
-ODBC::__construct(  $db ): \ODBC
+ODBC::__construct( string $db ): \ODBC
 ```
 
 Constructor
@@ -1897,7 +1897,7 @@ Constructor
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$db` | **** |  |
+| `$db` | **string** | the database we are using |
 
 
 
@@ -1909,7 +1909,7 @@ Constructor
 Yadal::setConnectionResource()
 
 ```php
-ODBC::setConnectionResource(  &$conn ): void
+ODBC::setConnectionResource( resource &$conn ): void
 ```
 
 Instead of opening a new connection, set the
@@ -1920,7 +1920,7 @@ connection resource of the already opend connection
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$conn` | **** |  |
+| `$conn` | **resource** | The connection resource |
 
 
 
@@ -1948,7 +1948,7 @@ Return if we have a connection or not
 Yadal::dbDate()
 
 ```php
-ODBC::dbDate(  $y,  $m,  $d ): string
+ODBC::dbDate( string $y, string $m, string $d ): string
 ```
 
 Convert the given date to the correct database format.
@@ -1958,9 +1958,9 @@ Convert the given date to the correct database format.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$y` | **** |  |
-| `$m` | **** |  |
-| `$d` | **** |  |
+| `$y` | **string** | The year of the date which should be converteds |
+| `$m` | **string** | The month of the date which should be converteds |
+| `$d` | **string** | The day of the date which should be converteds |
 
 
 **Return Value:**
@@ -1976,7 +1976,7 @@ the date in the correct format or null when the date could not be converted
 Yadal::array2case()
 
 ```php
-ODBC::array2case(  $field,  $options,  $default = &#039;Unknown&#039; ): string
+ODBC::array2case( string $field, array $options, string $default = &#039;Unknown&#039; ): string
 ```
 
 Change an array to a CASE statement which can be used in an query.
@@ -1996,9 +1996,9 @@ END
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$field` | **** |  |
-| `$options` | **** |  |
-| `$default` | **** |  |
+| `$field` | **string** | The field which we should use in the case or if statement |
+| `$options` | **array** | Array of options. The array key will be used as statement compare-item and the value will be used as value |
+| `$default` | **string** | The default value if none of the array keys are matched. Default is "Unknown". If you dont want to have a default value, use false |
 
 
 
@@ -2026,7 +2026,7 @@ Do we have to quote numbers ?
 Yadal::quote()
 
 ```php
-ODBC::quote(  $name ): string
+ODBC::quote( string $name ): string
 ```
 
 Return the table name or field name quoted (so that spaces can be used)
@@ -2036,7 +2036,7 @@ Return the table name or field name quoted (so that spaces can be used)
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$name` | **** |  |
+| `$name` | **string** | The table or field name which should me quoted |
 
 
 
@@ -2080,7 +2080,7 @@ Return the last query which was executed
 Yadal::result()
 
 ```php
-ODBC::result(  $sql,  $row,  $field = null ): string
+ODBC::result( resource $sql, integer $row, string $field = null ): string
 ```
 
 Return a specific result of a sql resource
@@ -2090,9 +2090,9 @@ Return a specific result of a sql resource
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
-| `$row` | **** |  |
-| `$field` | **** |  |
+| `$sql` | **resource** | The sql where you want to get a result from |
+| `$row` | **integer** | The row where you want a result from |
+| `$field` | **string** | The field which result you want |
 
 
 
@@ -2136,7 +2136,7 @@ ODBC::getFieldTypes(  )
 ODBC::connect()
 
 ```php
-ODBC::connect(  $dsn = &#039;&#039;,  $username = &#039;&#039;,  $password = &#039;&#039; ): \resource:
+ODBC::connect(  $dsn = &#039;&#039;,  $username = &#039;&#039;,  $password = &#039;&#039; ): resource
 ```
 
 Make a connection with the database and
@@ -2213,7 +2213,7 @@ ODBC::getPrKeys(  )
 ODBC::recordCount()
 
 ```php
-ODBC::recordCount(  $sql ): integer
+ODBC::recordCount( resource $sql ): integer
 ```
 
 Return the number of records found by the query
@@ -2223,7 +2223,7 @@ Return the number of records found by the query
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
+| `$sql` | **resource** | The sql resource we have to count |
 
 
 
@@ -2235,7 +2235,7 @@ Return the number of records found by the query
 ODBC::getFieldNames()
 
 ```php
-ODBC::getFieldNames(  $table ): array
+ODBC::getFieldNames( string $table ): array
 ```
 
 Return the field names of the table
@@ -2245,7 +2245,7 @@ Return the field names of the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | the table where we should fetch the field names from |
 
 
 
@@ -2279,7 +2279,7 @@ Public: escape the string we are going to save from dangerous characters
 ODBC::getRecord()
 
 ```php
-ODBC::getRecord(  $sql ): \:
+ODBC::getRecord( resource $sql ): \:
 ```
 
 Fetch a record in assoc mode and return it
@@ -2289,7 +2289,7 @@ Fetch a record in assoc mode and return it
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
+| `$sql` | **resource** | The sql resource where we have to get a row from |
 
 
 **Return Value:**
@@ -2321,7 +2321,7 @@ Get the id of the last inserted record
 ODBC::query()
 
 ```php
-ODBC::query(  $query ): resource
+ODBC::query( string $query ): resource
 ```
 
 Execute the query
@@ -2331,7 +2331,7 @@ Execute the query
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$query` | **** |  |
+| `$query` | **string** | the query |
 
 
 
@@ -2447,10 +2447,10 @@ PostgreSQL class
 
 ### __construct
 
-PostgreSQL::PostgreSQL()
+PostgreSQL::__construct()
 
 ```php
-PostgreSQL::__construct(  $db )
+PostgreSQL::__construct( string $db )
 ```
 
 Constructor
@@ -2460,7 +2460,7 @@ Constructor
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$db` | **** |  |
+| `$db` | **string** | The database to use to |
 
 
 
@@ -2472,7 +2472,7 @@ Constructor
 Yadal::setConnectionResource()
 
 ```php
-PostgreSQL::setConnectionResource(  &$conn ): void
+PostgreSQL::setConnectionResource( resource &$conn ): void
 ```
 
 Instead of opening a new connection, set the
@@ -2483,7 +2483,7 @@ connection resource of the already opend connection
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$conn` | **** |  |
+| `$conn` | **resource** | The connection resource |
 
 
 
@@ -2511,7 +2511,7 @@ Return if we have a connection or not
 Yadal::dbDate()
 
 ```php
-PostgreSQL::dbDate(  $y,  $m,  $d ): string
+PostgreSQL::dbDate( string $y, string $m, string $d ): string
 ```
 
 Convert the given date to the correct database format.
@@ -2521,9 +2521,9 @@ Convert the given date to the correct database format.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$y` | **** |  |
-| `$m` | **** |  |
-| `$d` | **** |  |
+| `$y` | **string** | The year of the date which should be converteds |
+| `$m` | **string** | The month of the date which should be converteds |
+| `$d` | **string** | The day of the date which should be converteds |
 
 
 **Return Value:**
@@ -2539,7 +2539,7 @@ the date in the correct format or null when the date could not be converted
 Yadal::array2case()
 
 ```php
-PostgreSQL::array2case(  $field,  $options,  $default = &#039;Unknown&#039; ): string
+PostgreSQL::array2case( string $field, array $options, string $default = &#039;Unknown&#039; ): string
 ```
 
 Change an array to a CASE statement which can be used in an query.
@@ -2559,9 +2559,9 @@ END
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$field` | **** |  |
-| `$options` | **** |  |
-| `$default` | **** |  |
+| `$field` | **string** | The field which we should use in the case or if statement |
+| `$options` | **array** | Array of options. The array key will be used as statement compare-item and the value will be used as value |
+| `$default` | **string** | The default value if none of the array keys are matched. Default is "Unknown". If you dont want to have a default value, use false |
 
 
 
@@ -2589,7 +2589,7 @@ Do we have to quote numbers ?
 Yadal::quote()
 
 ```php
-PostgreSQL::quote(  $name ): string
+PostgreSQL::quote( string $name ): string
 ```
 
 Return the table name or field name quoted (so that spaces can be used)
@@ -2599,7 +2599,7 @@ Return the table name or field name quoted (so that spaces can be used)
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$name` | **** |  |
+| `$name` | **string** | The table or field name which should me quoted |
 
 
 
@@ -2643,7 +2643,7 @@ Return the last query which was executed
 PostgreSQL::result()
 
 ```php
-PostgreSQL::result(  $result,  $row,  $field = null ): string
+PostgreSQL::result( resource $result, integer $row, string $field = null ): string
 ```
 
 Return a specific result of a sql resource
@@ -2653,9 +2653,9 @@ Return a specific result of a sql resource
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$result` | **** |  |
-| `$row` | **** |  |
-| `$field` | **** |  |
+| `$result` | **resource** | The sql result where you want to get a result from |
+| `$row` | **integer** | The row where you want a result from |
+| `$field` | **string** | The field which result you want |
 
 
 
@@ -2683,7 +2683,7 @@ Return the tables from the database
 PostgreSQL::getFieldTypes()
 
 ```php
-PostgreSQL::getFieldTypes(  $table ): array
+PostgreSQL::getFieldTypes( string $table ): array
 ```
 
 Retrieve the field types of the given table
@@ -2693,7 +2693,7 @@ Retrieve the field types of the given table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table where we should fetch the fields and their types from |
 
 
 
@@ -2705,7 +2705,7 @@ Retrieve the field types of the given table
 PostgreSQL::connect()
 
 ```php
-PostgreSQL::connect(  $host = &#039;&#039;,  $username = &#039;&#039;,  $password = &#039;&#039;,  $charset = &#039;UTF8&#039;,  $datestyle = &#039;ISO&#039; ): \resource:
+PostgreSQL::connect(  $host = &#039;&#039;,  $username = &#039;&#039;,  $password = &#039;&#039;,  $charset = &#039;UTF8&#039;,  $datestyle = &#039;ISO&#039; ): resource
 ```
 
 Public: Make a connection with the database and
@@ -2736,7 +2736,7 @@ The connection resource or false on failure
 PostgreSQL::getNotNullFields()
 
 ```php
-PostgreSQL::getNotNullFields(  $table ): array
+PostgreSQL::getNotNullFields( string $table ): array
 ```
 
 Retrieve the fields that can not contain NULL
@@ -2746,7 +2746,7 @@ Retrieve the fields that can not contain NULL
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table which fields we should retrieve |
 
 
 
@@ -2758,7 +2758,7 @@ Retrieve the fields that can not contain NULL
 PostgreSQL::getUniqueFields()
 
 ```php
-PostgreSQL::getUniqueFields(  $table ): array
+PostgreSQL::getUniqueFields( string $table ): array
 ```
 
 Fetch the unique keys from the table
@@ -2768,7 +2768,7 @@ Fetch the unique keys from the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table where we should fetch the unique fields from |
 
 
 
@@ -2780,7 +2780,7 @@ Fetch the unique keys from the table
 PostgreSQL::getPrKeys()
 
 ```php
-PostgreSQL::getPrKeys(  $table ): array
+PostgreSQL::getPrKeys( string $table ): array
 ```
 
 Fetch the keys from the table
@@ -2790,7 +2790,7 @@ Fetch the keys from the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table where we should retrieve the keys from |
 
 
 
@@ -2824,7 +2824,7 @@ Return the number of records found by the query
 PostgreSQL::getFieldNames()
 
 ```php
-PostgreSQL::getFieldNames(  $table ): array
+PostgreSQL::getFieldNames( string $table ): array
 ```
 
 Return the field names of the table
@@ -2834,7 +2834,7 @@ Return the field names of the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table to get the field names from |
 
 
 
@@ -2846,7 +2846,7 @@ Return the field names of the table
 PostgreSQL::escapeString()
 
 ```php
-PostgreSQL::escapeString(  $string ): string
+PostgreSQL::escapeString( string $string ): string
 ```
 
 Escape the string we are going to save from dangerous characters
@@ -2856,7 +2856,7 @@ Escape the string we are going to save from dangerous characters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$string` | **** |  |
+| `$string` | **string** | The string which should be escaped |
 
 
 
@@ -2868,7 +2868,7 @@ Escape the string we are going to save from dangerous characters
 PostgreSQL::getRecord()
 
 ```php
-PostgreSQL::getRecord(  $sql ): \assoc
+PostgreSQL::getRecord( resource $sql ): \assoc
 ```
 
 Fetch a record in assoc mode and return it
@@ -2878,7 +2878,7 @@ Fetch a record in assoc mode and return it
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
+| `$sql` | **resource** | The sql resource where we should get a record from |
 
 
 **Return Value:**
@@ -2894,7 +2894,7 @@ array or false when there are no records left
 PostgreSQL::getInsertId()
 
 ```php
-PostgreSQL::getInsertId(  $table ): integer
+PostgreSQL::getInsertId( string $table ): integer
 ```
 
 Get the id of the last inserted record
@@ -2904,7 +2904,7 @@ Get the id of the last inserted record
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | de tabel waarvan de laatste id van terug gegeven moet worden |
 
 
 
@@ -2916,7 +2916,7 @@ Get the id of the last inserted record
 PostgreSQL::query()
 
 ```php
-PostgreSQL::query(  $query ): resource
+PostgreSQL::query( string $query ): resource
 ```
 
 Execute a query
@@ -2926,7 +2926,7 @@ Execute a query
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$query` | **** |  |
+| `$query` | **string** | The query which should be executed |
 
 
 
@@ -2954,7 +2954,7 @@ Close the connection
 PostgreSQL::getError()
 
 ```php
-PostgreSQL::getError(  $sql = null ): string
+PostgreSQL::getError( resource $sql = null ): string
 ```
 
 Return the last error
@@ -2964,7 +2964,7 @@ Return the last error
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
+| `$sql` | **resource** | When you give a sql resource as parameter the last error of that result will be returned |
 
 
 
@@ -3002,7 +3002,7 @@ Abstract Database class
 Yadal::__construct()
 
 ```php
-Yadal::__construct(  $db = null )
+Yadal::__construct( string $db = null )
 ```
 
 Abstract constructor: store the db name.
@@ -3014,7 +3014,7 @@ newYadal() instead!!
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$db` | **** |  |
+| `$db` | **string** | the database we are using |
 
 
 
@@ -3026,7 +3026,7 @@ newYadal() instead!!
 Yadal::setConnectionResource()
 
 ```php
-Yadal::setConnectionResource(  &$conn ): void
+Yadal::setConnectionResource( resource &$conn ): void
 ```
 
 Instead of opening a new connection, set the
@@ -3037,7 +3037,7 @@ connection resource of the already opend connection
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$conn` | **** |  |
+| `$conn` | **resource** | The connection resource |
 
 
 
@@ -3065,7 +3065,7 @@ Return if we have a connection or not
 Yadal::dbDate()
 
 ```php
-Yadal::dbDate(  $y,  $m,  $d ): string
+Yadal::dbDate( string $y, string $m, string $d ): string
 ```
 
 Convert the given date to the correct database format.
@@ -3075,9 +3075,9 @@ Convert the given date to the correct database format.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$y` | **** |  |
-| `$m` | **** |  |
-| `$d` | **** |  |
+| `$y` | **string** | The year of the date which should be converteds |
+| `$m` | **string** | The month of the date which should be converteds |
+| `$d` | **string** | The day of the date which should be converteds |
 
 
 **Return Value:**
@@ -3093,7 +3093,7 @@ the date in the correct format or null when the date could not be converted
 Yadal::array2case()
 
 ```php
-Yadal::array2case(  $field,  $options,  $default = &#039;Unknown&#039; ): string
+Yadal::array2case( string $field, array $options, string $default = &#039;Unknown&#039; ): string
 ```
 
 Change an array to a CASE statement which can be used in an query.
@@ -3113,9 +3113,9 @@ END
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$field` | **** |  |
-| `$options` | **** |  |
-| `$default` | **** |  |
+| `$field` | **string** | The field which we should use in the case or if statement |
+| `$options` | **array** | Array of options. The array key will be used as statement compare-item and the value will be used as value |
+| `$default` | **string** | The default value if none of the array keys are matched. Default is "Unknown". If you dont want to have a default value, use false |
 
 
 
@@ -3143,7 +3143,7 @@ Do we have to quote numbers ?
 Yadal::quote()
 
 ```php
-Yadal::quote(  $name ): string
+Yadal::quote( string $name ): string
 ```
 
 Return the table name or field name quoted (so that spaces can be used)
@@ -3153,7 +3153,7 @@ Return the table name or field name quoted (so that spaces can be used)
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$name` | **** |  |
+| `$name` | **string** | The table or field name which should me quoted |
 
 
 
@@ -3197,7 +3197,7 @@ Return the last query which was executed
 Yadal::result()
 
 ```php
-Yadal::result(  $sql,  $row,  $field = null ): string
+Yadal::result( resource $sql, integer $row, string $field = null ): string
 ```
 
 Return a specific result of a sql resource
@@ -3207,9 +3207,9 @@ Return a specific result of a sql resource
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
-| `$row` | **** |  |
-| `$field` | **** |  |
+| `$sql` | **resource** | The sql where you want to get a result from |
+| `$row` | **integer** | The row where you want a result from |
+| `$field` | **string** | The field which result you want |
 
 
 
@@ -3472,7 +3472,7 @@ MySQL class
 MySQLi::__construct()
 
 ```php
-YadalMySQLi::__construct(  $db )
+YadalMySQLi::__construct( string $db )
 ```
 
 Constructor: set the database we should be using
@@ -3482,7 +3482,7 @@ Constructor: set the database we should be using
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$db` | **** |  |
+| `$db` | **string** | The database which should be used |
 
 
 
@@ -3494,7 +3494,7 @@ Constructor: set the database we should be using
 Yadal::setConnectionResource()
 
 ```php
-YadalMySQLi::setConnectionResource(  &$conn ): void
+YadalMySQLi::setConnectionResource( resource &$conn ): void
 ```
 
 Instead of opening a new connection, set the
@@ -3505,7 +3505,7 @@ connection resource of the already opend connection
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$conn` | **** |  |
+| `$conn` | **resource** | The connection resource |
 
 
 
@@ -3533,7 +3533,7 @@ Return if we have a connection or not
 Yadal::dbDate()
 
 ```php
-YadalMySQLi::dbDate(  $y,  $m,  $d ): string
+YadalMySQLi::dbDate( string $y, string $m, string $d ): string
 ```
 
 Convert the given date to the correct database format.
@@ -3543,9 +3543,9 @@ Convert the given date to the correct database format.
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$y` | **** |  |
-| `$m` | **** |  |
-| `$d` | **** |  |
+| `$y` | **string** | The year of the date which should be converteds |
+| `$m` | **string** | The month of the date which should be converteds |
+| `$d` | **string** | The day of the date which should be converteds |
 
 
 **Return Value:**
@@ -3561,7 +3561,7 @@ the date in the correct format or null when the date could not be converted
 Yadal::array2case()
 
 ```php
-YadalMySQLi::array2case(  $field,  $options,  $default = &#039;Unknown&#039; ): string
+YadalMySQLi::array2case( string $field, array $options, string $default = &#039;Unknown&#039; ): string
 ```
 
 Change an array to a CASE statement which can be used in an query.
@@ -3581,9 +3581,9 @@ END
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$field` | **** |  |
-| `$options` | **** |  |
-| `$default` | **** |  |
+| `$field` | **string** | The field which we should use in the case or if statement |
+| `$options` | **array** | Array of options. The array key will be used as statement compare-item and the value will be used as value |
+| `$default` | **string** | The default value if none of the array keys are matched. Default is "Unknown". If you dont want to have a default value, use false |
 
 
 
@@ -3611,7 +3611,7 @@ Do we have to quote numbers ?
 Yadal::quote()
 
 ```php
-YadalMySQLi::quote(  $name ): string
+YadalMySQLi::quote( string $name ): string
 ```
 
 Return the table name or field name quoted (so that spaces can be used)
@@ -3621,7 +3621,7 @@ Return the table name or field name quoted (so that spaces can be used)
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$name` | **** |  |
+| `$name` | **string** | The table or field name which should me quoted |
 
 
 
@@ -3665,7 +3665,7 @@ Return the last query which was executed
 MySQLi::result()
 
 ```php
-YadalMySQLi::result(  $sql,  $row,  $field ): string
+YadalMySQLi::result( resource $sql, integer $row, string $field ): string
 ```
 
 Return a specific result of a sql resource
@@ -3675,9 +3675,9 @@ Return a specific result of a sql resource
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
-| `$row` | **** |  |
-| `$field` | **** |  |
+| `$sql` | **resource** | The sql where you want to get a result from |
+| `$row` | **integer** | The row where you want a result from |
+| `$field` | **string** | The field which result you want |
 
 
 
@@ -3705,7 +3705,7 @@ Return the tables from the database
 MySQLi::getFieldTypes()
 
 ```php
-YadalMySQLi::getFieldTypes(  $table ): array
+YadalMySQLi::getFieldTypes( string $table ): array
 ```
 
 Retrieve the field types of the given table
@@ -3715,7 +3715,7 @@ Retrieve the field types of the given table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table where we should fetch the fields and their types from |
 
 
 
@@ -3727,7 +3727,7 @@ Retrieve the field types of the given table
 MySQLi::connect()
 
 ```php
-YadalMySQLi::connect(  $host = &#039;localhost&#039;,  $username = &#039;&#039;,  $password = &#039;&#039;,  $charset = &#039;utf8&#039; ): \resource:
+YadalMySQLi::connect(  $host = &#039;localhost&#039;,  $username = &#039;&#039;,  $password = &#039;&#039;,  $charset = &#039;utf8&#039; ): resource
 ```
 
 Make a connection with the database and
@@ -3757,7 +3757,7 @@ The connection resource
 MySQLi::getNotNullFields()
 
 ```php
-YadalMySQLi::getNotNullFields(  $table ): array
+YadalMySQLi::getNotNullFields( string $table ): array
 ```
 
 Retrieve the fields that can not contain NULL
@@ -3767,7 +3767,7 @@ Retrieve the fields that can not contain NULL
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table which fields we should retrieve |
 
 
 
@@ -3779,7 +3779,7 @@ Retrieve the fields that can not contain NULL
 MySQLi::getUniqueFields()
 
 ```php
-YadalMySQLi::getUniqueFields(  $table ): \array:
+YadalMySQLi::getUniqueFields( string $table ): array
 ```
 
 Fetch the unique fields from the table
@@ -3789,7 +3789,7 @@ Fetch the unique fields from the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table where the unique-value-field should be collected from |
 
 
 **Return Value:**
@@ -3805,7 +3805,7 @@ multidimensional array of the unique indexes on the table
 MySQLi::getPrKeys()
 
 ```php
-YadalMySQLi::getPrKeys(  $table ): array
+YadalMySQLi::getPrKeys( string $table ): array
 ```
 
 Fetch the keys from the table
@@ -3815,7 +3815,7 @@ Fetch the keys from the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table where we should fetch the keys from |
 
 
 **Return Value:**
@@ -3831,7 +3831,7 @@ of the keys which are found
 MySQLi::recordCount()
 
 ```php
-YadalMySQLi::recordCount(  $sql ): integer
+YadalMySQLi::recordCount( resource $sql ): integer
 ```
 
 Return the number of records found by the query
@@ -3841,7 +3841,7 @@ Return the number of records found by the query
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
+| `$sql` | **resource** | The resource which should be counted |
 
 
 
@@ -3853,7 +3853,7 @@ Return the number of records found by the query
 MySQLi::getFieldNames()
 
 ```php
-YadalMySQLi::getFieldNames(  $table ): array
+YadalMySQLi::getFieldNames( string $table ): array
 ```
 
 Return the field names of the table
@@ -3863,7 +3863,7 @@ Return the field names of the table
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$table` | **** |  |
+| `$table` | **string** | The table where the field names should be collected from |
 
 
 
@@ -3875,7 +3875,7 @@ Return the field names of the table
 MySQLi::escapeString()
 
 ```php
-YadalMySQLi::escapeString(  $string ): string
+YadalMySQLi::escapeString( string $string ): string
 ```
 
 Escape the string we are going to save from dangerous characters
@@ -3885,7 +3885,7 @@ Escape the string we are going to save from dangerous characters
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$string` | **** |  |
+| `$string` | **string** | The string to escape |
 
 
 
@@ -3897,7 +3897,7 @@ Escape the string we are going to save from dangerous characters
 MySQLi::getRecord()
 
 ```php
-YadalMySQLi::getRecord(  $sql ): \assoc
+YadalMySQLi::getRecord( resource $sql ): \assoc
 ```
 
 Fetch a record in assoc mode and return it
@@ -3907,7 +3907,7 @@ Fetch a record in assoc mode and return it
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$sql` | **** |  |
+| `$sql` | **resource** | The resource which should be used to retireve a record from |
 
 
 **Return Value:**
@@ -3939,7 +3939,7 @@ Get the id of the last inserted record
 MySQLi::query()
 
 ```php
-YadalMySQLi::query(  $query ): resource
+YadalMySQLi::query( string $query ): resource
 ```
 
 Execute the query
@@ -3949,7 +3949,7 @@ Execute the query
 
 | Parameter | Type | Description |
 |-----------|------|-------------|
-| `$query` | **** |  |
+| `$query` | **string** | the query which should be executed |
 
 
 

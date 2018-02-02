@@ -22,7 +22,7 @@
 class ODBC extends Yadal {
     var $_dsn;		// dsn
     /**
-     * ODBC::ODBC()
+     * ODBC::__construct()
      *
      * Constructor
      *
@@ -40,10 +40,10 @@ class ODBC extends Yadal {
      * Make a connection with the database and
      * select the database.
      *
-     * @param string dsn: the dsn to connect to
-     * @param string username: the username which should be used to login
-     * @param string password: the password which should be used to login
-     * @return resource: The connection resource or false on failure
+     * @param string dsn the dsn to connect to
+     * @param string username the username which should be used to login
+     * @param string password the password which should be used to login
+     * @return resource The connection resource or false on failure
      * @access public
      * @author Teye Heimans
      */
@@ -63,7 +63,7 @@ class ODBC extends Yadal {
      *
      * Execute the query
      *
-     * @param string $query: the query
+     * @param string $query the query
      * @return resource
      * @access public
      * @author Teye Heimans
@@ -102,7 +102,7 @@ class ODBC extends Yadal {
      *
      * Return the number of records found by the query
      *
-     * @param resource $sql: The sql resource we have to count
+     * @param resource $sql The sql resource we have to count
      * @return int
      * @access public
      * @author Teye Heimans
@@ -115,7 +115,7 @@ class ODBC extends Yadal {
      *
      * Fetch a record in assoc mode and return it
      *
-     * @param resource $sql: The sql resource where we have to get a row from
+     * @param resource $sql The sql resource where we have to get a row from
      * @return: assoc array or false when there are no records left
      * @access public
      * @author Teye Heimans
@@ -128,7 +128,7 @@ class ODBC extends Yadal {
      *
      * Return the field names of the table
      *
-     * @param string $table: the table where we should fetch the field names from
+     * @param string $table the table where we should fetch the field names from
      * @return array
      * @access public
      * @author Teye Heimans
